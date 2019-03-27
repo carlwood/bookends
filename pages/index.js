@@ -33,12 +33,13 @@ class Home extends Component {
           {!this.props.isAuthenticated && (
             <React.Fragment>
               <h1>Not authed</h1>
-              <p><Link href="/auth/sign-in">Log in</Link></p>
+              <p><Link href="/auth/login">Log in</Link></p>
             </React.Fragment>
           )}
           {this.props.isAuthenticated && (
             <React.Fragment>
               <h1>Hi {this.props.loggedUser.given_name}</h1>
+              <p><Link href="/auth/logout">Log out</Link></p>
             </React.Fragment>
           )}
         </Page>
