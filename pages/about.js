@@ -5,7 +5,7 @@ import Page from '../layout/Page'
 function About() {
   return (
     <React.Fragment>
-        <Header />
+      <Header />
       <Page>
         <h1>About</h1>
       </Page>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Link from 'next/link';
 import StyledLogo from '../styled-components/logo'
 
-export default class Logo extends Component {
+class Logo extends Component {
   render() {
     return (
       <React.Fragment>
@@ -13,3 +13,5 @@ export default class Logo extends Component {
     )
   }
 }
+
+export default Logo;

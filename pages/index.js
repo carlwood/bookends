@@ -1,17 +1,50 @@
 import React, { Component } from 'react'
 import Header from '../layout/Header'
 import Page from '../layout/Page'
+import Link from 'next/link'
+import CurrentlyReading from '../components/CurrentlyReading'
+import { getUserFromServerCookie, getUserFromLocalCookie } from '../utils/auth'
 
-function Home() {
-  return (
-    <React.Fragment>
-      <Header />
-      <Page>
-        <h1>Home</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      </Page>
-    </React.Fragment>
-  )
+
+class Home extends Component {
+  static getInitialProps(ctx) {
+    // const loggedUser = process.browser ? getUserFromLocalCookie() : getUserFromServerCookie(ctx.req)
+    // const pageProps = Page.getInitialProps && Page.getInitialProps(ctx)
+    // return {
+    //   ...pageProps,
+    //   loggedUser,
+    //   currentUrl: ctx.pathname,
+    //   isAuthenticated: !!loggedUser
+    // }
+    console.log(ctx);
+    const loggedUser = process.browser ? getUserFromLocalCookie() : getUserFromServerCookie(ctx.req)
+    return {
+      loggedUser,
+      isAuthenticated: !!loggedUser
+    }
+  }
+
+  render() {
+    console.log(this.props);
+    return (
+      <div>
+        <Header />
+        <Page>
+          {!this.props.isAuthenticated && (
+            <React.Fragment>
+              <h1>Not authed</h1>
+              <p><Link href="/auth/sign-in">Log in</Link></p>
+            </React.Fragment>
+          )}
+          {this.props.isAuthenticated && (
+            <React.Fragment>
+              <h1>Hi {this.props.loggedUser.given_name}</h1>
+            </React.Fragment>
+          )}
+        </Page>
+      </div>
+    )
+  }
 }
 
 export default Home
