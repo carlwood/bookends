@@ -8,6 +8,8 @@
     "auth0-js": "^9.10.1",
     "babel-plugin-styled-components": "^1.10.0",
     "dotenv": "^7.0.0",
+    "firebase": "^5.9.1",
+    "firebase-tools": "^6.5.0",
     "js-cookie": "^2.2.0",
     "jwt-decode": "^2.2.0",
     "next": "^8.0.3",
