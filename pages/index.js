@@ -8,31 +8,22 @@ import { getUserFromServerCookie, getUserFromLocalCookie } from '../utils/auth'
 
 class Home extends Component {
   static getInitialProps(ctx) {
-    // const loggedUser = process.browser ? getUserFromLocalCookie() : getUserFromServerCookie(ctx.req)
-    // const pageProps = Page.getInitialProps && Page.getInitialProps(ctx)
-    // return {
-    //   ...pageProps,
-    //   loggedUser,
-    //   currentUrl: ctx.pathname,
-    //   isAuthenticated: !!loggedUser
-    // }
-    console.log(ctx);
     const loggedUser = process.browser ? getUserFromLocalCookie() : getUserFromServerCookie(ctx.req)
     return {
+      currentUrl: ctx.pathname,
       loggedUser,
       isAuthenticated: !!loggedUser
     }
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Header />
         <Page>
           {!this.props.isAuthenticated && (
             <React.Fragment>
-              <h1>Not authed</h1>
+              <h1>Logged out</h1>
               <p><Link href="/auth/login">Log in</Link></p>
             </React.Fragment>
           )}

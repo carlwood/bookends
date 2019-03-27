@@ -7,7 +7,6 @@ class Logout extends React.Component {
   componentDidMount () {
     unsetToken();
     logout();
-    Router.push('/');
   }
   render() {
     return null;
