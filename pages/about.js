@@ -1,12 +1,15 @@
-import Link from 'next/link'
+import React, { Component } from 'react'
+import Header from '../layout/Header'
+import Page from '../layout/Page'
 
 function About() {
   return (
-    <div>
-      <Link href="/">
-        <a>Home</a>
-      </Link>{' '}
-    </div>
+    <React.Fragment>
+        <Header />
+      <Page>
+        <h1>About</h1>
+      </Page>
+    </React.Fragment>
   )
 }
 
